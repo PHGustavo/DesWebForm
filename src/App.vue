@@ -17,7 +17,24 @@ const clientInfo = ref({
   biography: ''
 });
 
+function sendForm() {
+  sentInfo.value = {
+    name: clientInfo.value.name,
+    email: clientInfo.value.email,
+    password: clientInfo.value.password,
+    passwordConfirm: clientInfo.value.passwordConfirm,
+    dateBirth: clientInfo.value.dateBirth,
+    address: clientInfo.value.address,
+    city: clientInfo.value.city,
+    state: clientInfo.value.confirmstate,
+    hobbies: clientInfo.value.hobbies,
+    programmingLanguage: clientInfo.value.programmingLanguage,
+    biography: clientInfo.value.biography
+  }
+};
+
 const showpassword = ref(false);
+const sentInfo = ref(null);
 
 const states = [
   { acronym: 'AC', namestate: 'Acre' },
@@ -52,7 +69,7 @@ const states = [
 
 <template>
  <div>
-    <form>
+    <form @submit.prevent="sendForm">
       <div class="card text-bg-secondary mb-5 mt-5">
         <div class="card-header text-bg-primary text-center">
           <h1>Form</h1>
@@ -191,11 +208,105 @@ const states = [
                 required
               />
             </div>
+            <div class="d-grid gap-2 mt-3">
+              <button class="btn btn-info" type="submit" @click="sendForm">
+                Send
+              </button>
             </div>
           </div>
         </div>
+      </div>
     </form>
   </div>
+
+  <div v-if="sentInfo">
+    <div class="card text-bg-secondary ms-5 mb-5 mt-5 ">
+      <div class="card-header text-bg-warning text-center">
+        <h1>Form</h1>
+      </div>
+      <div class="card-body">
+        <h2 class="card-title">Your Info:</h2>
+        <div>
+          <ul class="list-group list-group-flush">
+            <label for="itemName">Name:</label>
+            <div>
+              <div class="form-control">
+                <li class="list-group-item" >{{ sentInfo.name }}</li>
+              </div>
+            </div>
+
+            <label for="itemName">Email:</label>
+            <div>
+              <div class="form-control">
+                <li class="list-group-item">{{ sentInfo.email }}</li>
+              </div>
+            </div>
+
+            <label for="itemName">Password:</label>
+            <div>
+              <div class="form-control">
+                <li class="list-group-item">{{ sentInfo.password }}</li>
+              </div>
+            </div>
+            <label for="itemName">Confirm:</label>
+            <div>
+              <div class="form-control">
+                <li class="list-group-item">{{ sentInfo.passwordConfirm }}</li>
+              </div>
+            </div>
+            <label for="itemName">Date of Birth:</label>
+            <div>
+              <div class="form-control">
+                <li class="list-group-item">{{ sentInfo.dateBirth }}</li>
+              </div>
+            </div>
+
+            <label for="itemName">State:</label>
+            <div class="form-control">
+              <div>
+                <li class="list-group-item">{{ sentInfo.state }}</li>
+              </div>
+            </div>
+
+            <label for="itemName">City:</label>
+            <div>
+              <div class="form-control">
+                <li class="list-group-item">{{ sentInfo.city }}</li>
+              </div>
+            </div>
+
+            <label for="itemName">Address:</label>
+            <div>
+              <div class="form-control">
+                <li class="list-group-item">{{ sentInfo.address }}</li>
+              </div>
+            </div>
+
+            <label for="itemName">Hobbies:</label>
+            <div>
+              <div class="form-control">
+                <li class="list-group-item">{{ sentInfo.hobbies }}</li>
+              </div>
+            </div>
+            <label for="itemName">Programming Languages:</label>
+            <div>
+              <div class="form-control">
+                <li class="list-group-item">{{ sentInfo.programmingLanguage }}</li>
+              </div>
+            </div>
+            <label for="itemName">Biography:</label>
+            <div>
+              <div class="form-control">
+                <li class="list-group-item">{{ sentInfo.biography }}</li>
+              </div>
+            </div>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
 </template>
 
 <style scoped>
