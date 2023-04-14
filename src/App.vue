@@ -89,7 +89,7 @@ const states = [
             </div>
 
             <div class="form-group">
-              <label for="clientInfo.password" class="form-label">password</label>
+              <label for="clientInfo.password" class="form-label">Password</label>
               <div class="input-group">
                 <input class="form-control" v-model="clientInfo.password" :type="showPassword ? 'text' : 'password'" />
                 <button class="btn btn-light" type="button" @click="showPassword = !showPassword">
